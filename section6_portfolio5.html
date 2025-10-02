@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel ="stylesheet" href="styles.css">
+
+<title>Smart Bucket List - Demo (Portfolio 5)</title>
+
+</head>
+
+<body>
+  <div class="card">
+    <div class="hero">
+      <h1>Smart Bucket List - Demo (Portfolio 5)</h1>
+      <p class="sub">Pick a country → see quick info (now with Food) → generate or add your own tasks → track progress.</p>
+    </div>
+
+    <div class="wrap">
+      <div class="panel">
+        <div class="row">
+          <div>
+            <label for="country">Choose a country</label><br/>
+            <select id="country">
+              <option value="" selected disabled>-- Select --</option>
+              <option value="japan">Japan</option>
+              <option value="italy">Italy</option>
+              <option value="canada">Canada</option>
+              <option value="brazil">Brazil</option>
+              <option value="spain">Spain</option>
+              <option value="australia">Australia</option>
+              <option value="turkey">Turkey</option>
+              <option value="mexico">Mexico</option>
+              <option value="egypt">Egypt</option>
+            </select>
+          </div>
+          <button id="showInfoBtn">Show Info</button>
+          <button id="genBtn" disabled>Generate Checklist</button>
+        </div>
+
+        <div id="info" class="panel" style="display:none;">
+          <div class="info-grid">
+            <div class="info-item"><b>Capital</b><span id="capital">—</span></div>
+            <div class="info-item"><b>Currency</b><span id="currency">—</span></div>
+            <div class="info-item"><b>Best Time</b><span id="besttime">—</span></div>
+            <div class="info-item"><b>Top Highlight</b><span id="highlight">—</span></div>
+            <div class="info-item"><b>Food</b><span id="food">—</span></div>
+          </div>
+        </div>
+
+        <div id="tasksWrap" class="panel" style="display:none;">
+          <ul id="tasks" class="tasks"></ul>
+          <div class="progress"><div class="bar" id="bar"></div></div>
+          <div class="progress-text" id="ptext">0/0 complete</div>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button id="resetBtn" class="secondary">Reset Checklist</button>
+          </div>
+          <div style="margin-top:10px; display:flex; gap:10px;">
+            <input type="text" id="newTaskInput" placeholder="Add your own task" style="flex:1;">
+            <button id="addTaskBtn">Add Task</button>
+          </div>
+        </div>
+
+        <p class="hint">Note: Pure HTML, CSS, and JavaScript only. No frameworks, all local/relative code.</p>
+      </div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+
+</html>

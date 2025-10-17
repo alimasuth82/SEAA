@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact Us | SEAA</title>
- <link rel ="stylesheet" href="contactusAssets/css/contactus.css">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="contactusAssets/css/contactus.css" />
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <a href="/" class="logo">SEAA</a>
     <nav>
@@ -20,10 +26,111 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
-    <a href="#" class="cta-button">Start Planning</a>
+    <div class="auth-links">
+      <a href="#" class="login-link">Login</a>
+      <a href="#" class="cta-button">Sign Up</a>
+    </div>
   </header>
 
-  <!-- Main content would go here -->
+  <!-- Contact Us Form Section -->
+  <div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4">We’d Love to Hear from You</h2>
+    <p class="text-center mb-4">Have questions, suggestions, or want to connect? Send us a message and we’ll get back to you as soon as we can.</p>
 
+    <form action="#" method="POST" class="contactus-form">
+      <fieldset class="mb-4">
+        <legend>Your Information</legend>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Jane Doe" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address:</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="subject" class="form-label">Subject (optional):</label>
+          <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject of your message">
+        </div>
+      </fieldset>
+
+      <fieldset class="mb-4">
+        <legend>Your Message</legend>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">Message:</label>
+          <textarea id="message" name="message" rows="6" class="form-control" placeholder="Type your message here..." required></textarea>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn btn-dark">Send Message</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container py-5">
+      <div class="row">
+
+        <!-- Footer Logo & Tagline -->
+        <div class="col-md-4 mb-4">
+          <a href="/" class="footer-logo">SEAA</a>
+          <p class="footer-tagline">go explore, experience and we'll SEAA later!</p>
+        </div>
+
+        <!-- Explore / Quick Links -->
+        <div class="col-md-2 mb-4">
+          <h6>Explore</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#">Trip Styles</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
+
+        <!-- Connect / Social / Contact -->
+        <div class="col-md-3 mb-4">
+          <h6>Connect</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal / Policies -->
+        <div class="col-md-3 mb-4">
+          <h6>Legal</h6>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom py-3 text-center">
+      <small>&copy; 2025 SEAA. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- Form Submission Script -->
+  <script>
+    const contactForm = document.querySelector('.contactus-form');
+
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevents page reload
+      alert("Thanks for your message! We'll be in touch soon.");
+    });
+  </script>
+
+  <!-- Bootstrap JS Bundle leave this here for faster loading speeds-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

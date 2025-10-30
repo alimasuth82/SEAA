@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SEAA — Smart Bucket List</title>
+  <title>Contact | SEAA — Smart Bucket List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -29,121 +29,73 @@
 
 
 
-
-
-  <!-- ===== Main page content ===== -->
   <main class="page">
-    <!-- ===== Hero (with background slideshow) ===== -->
-    <section class="hero-landing" id="about">
-      <!-- two layers for cross-fade -->
-      <div class="hero-bg hero-bg-a"></div>
-      <div class="hero-bg hero-bg-b"></div>
-
+    <!-- ===== Hero ===== -->
+    <section class="hero-landing" style="background: none; padding: 80px 20px 40px;">
       <div class="hero-inner">
-        <h1>Unforgettable trips, crafted by SEAA</h1>
+        <h1>Contact SEAA</h1>
         <p class="hero-sub">
-          Plan smarter with insider tips, seamless checklists, and beautiful ideas—at no extra cost.
+          Questions, partnerships, or feedback? We’d love to hear from you.
         </p>
         <div class="hero-actions">
-          <button id="openBucketBtn2" class="btn-cta btn-lg" type="button">Open the Bucket List</button>
+          <a href="#contact-form" class="btn-cta btn-lg">Send a Message</a>
         </div>
-        <!-- badges removed per request -->
-      </div>
-    </section>
-
-
-
-    <!-- ===== Services (3 new cards with CTA style) ===== -->
-    <section class="tiles" id="destinations">
-      <div class="tiles-inner">
-        <article class="tile">
-          <h3>Travel Agency Finder</h3>
-          <p>Explore thousands of certified travel agencies to help plan your next dream destination.</p>
-          <button class="btn-cta" type="button" onclick="window.open('https://www.travelhub.com','_blank')">
-            👉 Visit TravelHUB
-          </button>
-        </article>
-
-        <article class="tile">
-          <h3>Official Travel Planning Guide</h3>
-          <p>Get safety tips, entry rules, and travel advice from the U.S. Department of State before your trip.</p>
-          <button class="btn-cta" type="button" onclick="window.open('https://travel.state.gov','_blank')">
-            👉 Visit Travel.State.gov
-          </button>
-        </article>
-
-        <article class="tile">
-          <h3>Global Tour & Agency Directory</h3>
-          <p>Discover international tour operators and destination-management companies for your bucket list adventures.</p>
-          <button class="btn-cta" type="button" onclick="window.open('https://www.tourism-review.org','_blank')">
-            👉 Visit Tourism-Review.org
-          </button>
-        </article>
       </div>
     </section>
 
 
 
 
+<!-- ===== Contact Methods (cards) ===== -->
+<section class="tiles contact-cards" aria-label="Contact Methods">
+  <div class="tiles-inner" style="grid-template-columns: repeat(3, 1fr);">
 
-
-<!-- ===== Continents row (5 cards) ===== -->
-<section class="tiles tiles-continents" id="continents">
-  <div class="tiles-inner tiles-5-fixed">
-    <!-- Asia -->
     <article class="tile">
-      <img class="tile-img" src="images/continents/asia.jpg" alt="Asia" />
-      <h3>Asia</h3>
-      <p>Temples, neon nights, and tropical escapes.</p>
-      <button class="btn-cta" type="button"
-        onclick="window.open('https://www.lonelyplanet.com/asia','_blank')">
-        Explore Asia
+      <div class="method-meta">
+        <h3>Email</h3>
+        <p>General inquiries and support.</p>
+        <p><b>support@seaa.travel</b></p>
+      </div>
+      <button class="btn-cta" type="button" onclick="window.location='mailto:shahabmt.98@gmail.com'">
+        Email Us
       </button>
     </article>
 
-    <!-- Europe -->
     <article class="tile">
-      <img class="tile-img" src="images/continents/europe.jpg" alt="Europe" />
-      <h3>Europe</h3>
-      <p>Castles, coastlines, cafés, and rich culture.</p>
-      <button class="btn-cta" type="button"
-        onclick="window.open('https://www.lonelyplanet.com/europe','_blank')">
-        Explore Europe
+      <div class="method-meta">
+        <h3>Phone</h3>
+        <p>Mon–Fri, 9:00–17:00 (EST)</p>
+        <p><b>+1 (555) 012-3456</b></p>
+      </div>
+      <button class="btn-cta" type="button" onclick="window.location='tel:+15550123456'">
+        Call Now
       </button>
     </article>
 
-    <!-- Africa -->
     <article class="tile">
-      <img class="tile-img" src="images/continents/africa.jpg" alt="Africa" />
-      <h3>Africa</h3>
-      <p>Wildlife safaris, deserts, and colorful cities.</p>
-      <button class="btn-cta" type="button"
-        onclick="window.open('https://www.lonelyplanet.com/africa','_blank')">
-        Explore Africa
-      </button>
+      <div class="method-meta">
+        <h3>Social</h3>
+        <p>Follow us for updates and travel tips.</p>
+        <div class="social" style="margin-top:8px;">
+          <a aria-label="Instagram" href="https://www.instagram.com" target="_blank" rel="noopener" class="ico" title="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 .002 6.002A3 3 0 0 0 12 9Z"/></svg>
+          </a>
+          <a aria-label="Facebook" href="https://www.facebook.com" target="_blank" rel="noopener" class="ico" title="Facebook">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7a2 2 0 0 1 2-2h2V1h-3a5 5 0 0 0-5 5v4H6v4h3v8h4Z"/></svg>
+          </a>
+          <a aria-label="X" href="https://twitter.com" target="_blank" rel="noopener" class="ico" title="X">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h3.4l5.3 7.2L16.9 3H21l-7.5 9.7L21 21h-3.5l-6-8-5.9 8H3l7.7-10L3 3Z"/></svg>
+          </a>
+          <a aria-label="YouTube" href="https://www.youtube.com" target="_blank" rel="noopener" class="ico" title="YouTube">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23 7.5a4 4 0 0 0-2.8-2.8C18.3 4 12 4 12 4s-6.3 0-8.2.7A4 4 0 0 0 1 7.5 41 41 0 0 0 1 12a41 41 0 0 0 .8 4.5 4 4 0 0 0 2.8 2.8C5.7 20 12 20 12 20s6.3 0 8.2-.7A4 4 0 0 0 23 16.5 41 41 0 0 0 23 12a41 41 0 0 0 0-4.5ZM10 15V9l5 3-5 3Z"/></svg>
+          </a>
+          <a aria-label="LinkedIn" href="https://www.linkedin.com" target="_blank" rel="noopener" class="ico" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.1C13.8 8.9 15.7 8 18 8c4.3 0 5 2.8 5 6.4V24h-5v-7.2c0-1.7 0-3.8-2.3-3.8-2.3 0-2.7 1.8-2.7 3.7V24H8V8z"/></svg>
+          </a>
+        </div>
+      </div>
     </article>
 
-    <!-- America -->
-    <article class="tile">
-      <img class="tile-img" src="images/continents/america.jpg" alt="America" />
-      <h3>America</h3>
-      <p>Vibrant cities, nature trails, and coastal views.</p>
-      <button class="btn-cta" type="button"
-        onclick="window.open('https://worldpopulationreview.com/country-rankings/countries-in-americas?utm_source=chatgpt.com','_blank')">
-        Explore America
-      </button>
-    </article>
-
-    <!-- Oceania -->
-    <article class="tile">
-      <img class="tile-img" src="images/continents/oceania.jpg" alt="Oceania" />
-      <h3>Oceania</h3>
-      <p>Pristine beaches, reefs, and island adventures.</p>
-      <button class="btn-cta" type="button"
-        onclick="window.open('https://study.com/academy/lesson/oceania-countries-capitals.html?utm_source=chatgpt.com','_blank')">
-        Explore Oceania
-      </button>
-    </article>
   </div>
 </section>
 
@@ -151,17 +103,120 @@
 
 
 
+    <!-- ===== Contact Form ===== -->
+<section class="featured contact-form" id="contact-form" aria-label="Contact Form">
+  <div class="featured-inner">
+    <h2>Send Us a Message</h2>
 
-    <!-- ===== Reviews ===== -->
-    <section class="reviews" id="contact">
-      <div class="reviews-inner">
-        <h2>Loved by travelers</h2>
-        <p class="quote">“So easy to plan — the checklist kept us on track.” — SEAA user</p>
+        <div class="card">
+          <div class="wrap">
+            <form onsubmit="event.preventDefault(); alert('Thanks! We received your message and will reply soon.'); this.reset();">
+              <div class="info-grid">
+                <div class="info-item">
+                  <b>First Name</b>
+                  <input type="text" name="firstName" placeholder="John" required />
+                </div>
+                <div class="info-item">
+                  <b>Last Name</b>
+                  <input type="text" name="lastName" placeholder="Doe" required />
+                </div>
+                <div class="info-item">
+                  <b>Email</b>
+                  <input type="email" name="email" placeholder="you@example.com" required />
+                </div>
+                <div class="info-item">
+                  <b>Phone</b>
+                  <input type="tel" name="phone" placeholder="+1 (___) ___-____" pattern="\\+?\\d[\\d\\s\\-()]{7,}" />
+                </div>
+                <div class="info-item">
+                  <b>Topic</b>
+                  <select name="topic" required>
+                    <option value="">-- Select --</option>
+                    <option>General Question</option>
+                    <option>Partnership</option>
+                    <option>Press</option>
+                    <option>Support</option>
+                  </select>
+                </div>
+                <div class="info-item" style="grid-column: 1 / -1;">
+                  <b>Message</b>
+                  <textarea name="message" rows="5" placeholder="Type your message..." style="width:100%; border:1px solid var(--border); border-radius:12px; padding:10px;" required></textarea>
+                </div>
+                <div class="info-item" style="grid-column: 1 / -1; background: transparent; border:none; padding:0;">
+                  <label style="display:flex; align-items:center; gap:10px;">
+                    <input type="checkbox" required />
+                    I agree to the Privacy Policy and Terms of Use.
+                  </label>
+                </div>
+              </div>
+
+              <div class="hero-actions" style="justify-content:flex-start; margin-top:14px;">
+                <button class="btn-cta" type="button" onclick="window.location='mailto:shahabmt.98@gmail.com'">
+  Email Us
+</button>
+
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+
+<!-- ===== Map ===== -->
+<div class="card" style="margin-top:16px;">
+  <div class="wrap">
+    <b>Find us</b>
+    <p class="hint">Replace the map location with your office or city.</p>
+    <div class="map-card">
+      <iframe
+        title="SEAA Office Map"
+        src="https://maps.google.com/maps?q=New%20York%20City&t=&z=12&ie=UTF8&iwloc=&output=embed"
+        width="100%" height="360" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="map-caption">
+      <span>New York, USA</span>
+      <a class="link" href="https://maps.google.com/?q=New+York+City" target="_blank" rel="noopener">Open in Google Maps →</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== FAQ ===== -->
+<section class="featured faq" aria-label="FAQ">
+  <div class="featured-inner">
+    <h2>Frequently Asked Questions</h2>
+    <div class="card">
+      <div class="wrap">
+
+        <details>
+          <summary>How fast do you respond?</summary>
+          <div class="panel-inner">
+            <p>We reply within 1–2 business days.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Do I need an account to use the Bucket List?</summary>
+          <div class="panel-inner">
+            <p>No account is required for the demo. Saved trips are on our roadmap.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Can I suggest a new destination?</summary>
+          <div class="panel-inner">
+            <p>Absolutely—use the form above or tag us on social media.</p>
+          </div>
+        </details>
+
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+</section>
+</main>
 
-  <!-- ===== Footer ===== -->
+ <!-- ===== Footer ===== -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-top">
@@ -242,8 +297,6 @@
 
 
 
-
-
 <!-- ===== Auth Modal ===== -->
 <div id="authModal" class="modal" aria-hidden="true">
   <div class="auth-glass" role="dialog" aria-modal="true" aria-labelledby="authTitle">
@@ -297,8 +350,7 @@
 
 
 
-
-  <!-- ===== Modal: Bucket List App ===== -->
+  <!-- ===== Modal: Bucket List ===== -->
   <div id="bucketModal" class="modal" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" id="closeBucketBtn" aria-label="Close bucket list">×</button>
@@ -378,18 +430,13 @@
     </div><!-- /.modal-card -->
   </div><!-- /.modal -->
 
+  <!-- ===== Scripts ===== -->
   <script src="script.js"></script>
-
-
-
-
-  <!-- Modal open/close -->
   <script>
+    // Modal open/close
     const modal = document.getElementById('bucketModal');
     const openBtns = [
-      document.getElementById('openBucketBtn'),
-      document.getElementById('openBucketBtn2'),
-      document.getElementById('openBucketBtn3')
+      document.getElementById('openBucketBtn')
     ].filter(Boolean);
     const closeBtn = document.getElementById('closeBucketBtn');
 
@@ -409,20 +456,45 @@
       if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
     });
   </script>
+  <script>
+  // Only one FAQ open at a time
+  document.querySelectorAll('.faq details').forEach(d => {
+    d.addEventListener('toggle', e => {
+      if (d.open) {
+        document.querySelectorAll('.faq details').forEach(other => {
+          if (other !== d) other.removeAttribute('open');
+        });
+      }
+    });
+  });
+
+  // Quick chip → prefill Topic select
+  function prefillTopic(value){
+    const sel = document.querySelector('select[name="topic"]');
+    if (sel) { sel.value = value; sel.dispatchEvent(new Event('change')); }
+    document.getElementById('contact-form')?.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // Optional toast on form "submit"
+  const form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', function(e){
+      // If you’re using a real endpoint, remove the next line.
+      e.preventDefault();
+      let toast = document.querySelector('.toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = 'Thanks! Your message was sent.';
+        document.body.appendChild(toast);
+      }
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2200);
+      form.reset();
+    });
+  }
+</script>
+<div class="toast" aria-live="polite" aria-atomic="true" style="display:none"></div>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

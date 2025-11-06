@@ -1,0 +1,50 @@
+/* ===== Responsive & Small Viewport Tweaks ===== */
+
+/* Stack rows earlier so controls never crush */
+@media (max-width: 820px){
+  .row { grid-template-columns: 1fr; }
+  .row > * { width: 100%; }
+}
+
+/* Reduce padding in bucket & auth modals on small screens */
+@media (max-width: 700px){
+  #bucketModal .hero { padding: 18px 16px; }
+  #bucketModal .wrap { padding: 14px; }
+  #bucketModal .modal-close { width: 28px; height: 28px; }
+  #authModal .auth-body { padding: 16px; }
+}
+
+/* Global grids stack down gracefully */
+@media (max-width: 900px){
+  .tiles-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px){
+  .tiles-inner { grid-template-columns: 1fr; }
+}
+
+/* Contact cards: keep phone numbers tidy and avoid overflow */
+.tiles.contact-cards .tile .phone,
+.tiles.contact-cards .tile .phone a { white-space: nowrap; }
+.tiles.contact-cards .tile .phone { display: grid; gap: 4px; }
+.tiles.contact-cards .tile,
+.tiles.contact-cards .tile a,
+.tiles.contact-cards .tile p { word-break: break-word; overflow-wrap: anywhere; }
+@media (max-width: 420px){ .tiles.contact-cards .tile { font-size: 0.95rem; } }
+@media (max-width: 680px){ .tiles.contact-cards .tile { min-height: unset; } }
+
+/* General grid fallbacks */
+@media (max-width: 768px){
+  .card-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 520px){
+  .hero{ padding:20px 16px; }
+  .wrap{ padding:14px; }
+}
+
+/* Ensure both modals fit viewport height and stay centered */
+#bucketModal .modal-card,
+#authModal  .auth-glass {
+  width: min(760px, 94vw);
+  max-height: 88vh;
+  overflow: auto;
+}

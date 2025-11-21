@@ -1,0 +1,58 @@
+:root{
+  --bg:#0b1720;
+  --card:#ffffff;
+  --muted:#f5f7fb;
+  --text:#e6f2ff;
+  --accent:#0ea5a6;
+  --accent-2:#f97316;
+  --border:#e6ebf4;
+}
+
+/* ===== Base / Reset / Typography ===== */
+*{ box-sizing:border-box }
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1000px 600px at 10% 5%, #0f2433 0%, #0b1720 60%);
+  color: var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+h1{margin:0 0 6px; font-size:1.75rem; letter-spacing:.2px;}
+.sub{margin:0; color:#475569}
+
+.page{ flex:1; }
+
+/* Buttons (shared) */
+.btn-cta {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none; color: #fff; font-weight: 800; cursor: pointer;
+  background: linear-gradient(135deg, var(--accent), #13c2c2);
+  box-shadow: 0 8px 18px rgba(14,165,166,.35);
+}
+.btn-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(19, 194, 194, 0.45);
+}
+
+/* Generic modal overlay (used by bucket + legal) */
+.modal {
+  position: fixed; inset: 0; display: none;
+  background: rgba(0,0,0,.55);
+  padding: 28px;
+  z-index: 100;
+}
+.modal.show { display: grid; place-items: center; }
+
+/* Floating logo animation */
+@keyframes floaty {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+.animated-logo { width: 60px; height: auto; animation: floaty 4s ease-in-out infinite; }

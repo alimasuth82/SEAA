@@ -1,0 +1,26 @@
+/* ===== On-screen keyboard ===== */
+.kb-toggle{
+  position: fixed; right: 16px; bottom: 16px;
+  z-index: 1100; padding: 10px 14px; border:0; border-radius: 10px;
+  background:#0ea5e9; color:#fff; font-weight:600; cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+.kb{
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: 0; width: min(720px, 96vw); padding: 10px;
+  background: #0b1220; color:#e5e7eb; border-top-left-radius:12px; border-top-right-radius:12px;
+  box-shadow:0 -10px 30px rgba(0,0,0,.35); display:none; z-index: 1099;
+}
+.kb.show{ display:block; }
+.kb-row{ display:flex; gap:8px; justify-content:center; margin:6px 0; }
+.kb-btn{
+  min-width: 38px; height:42px; padding:0 10px; border:0; border-radius:8px;
+  background:#1f2937; color:#e5e7eb; cursor:pointer; font-weight:600;
+}
+.kb-btn:hover{ background:#334155; }
+.kb-btn.wide{ min-width:80px; }
+.kb-btn.space{ flex:1; }
+.kb-btn.active{ background:#0ea5e9; }
+@media (max-width:520px){
+  .kb-btn{ min-width:32px; height:38px; }
+}

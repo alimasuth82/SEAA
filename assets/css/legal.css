@@ -1,0 +1,35 @@
+/* ===== Legal Modal (Privacy / Terms / Site Map) ===== */
+#legalModal.show { display: block; }
+
+#legalModal .modal-content {
+  width: min(760px, calc(100% - 2rem));
+  margin: 8vh auto;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  padding: 22px 24px 26px;
+  position: relative;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+#legalModal.show .modal-content { opacity: 1; transform: translateY(0); }
+
+#legalModal .modal-title { font-size: 1.25rem; font-weight: 700; margin: 0 0 .5rem; }
+#legalModal .modal-body p { margin: .5rem 0 1rem; line-height: 1.65; }
+#legalModal .modal-body ul { margin: .25rem 0 1rem 1.2rem; }
+#legalModal .modal-body li { margin: .3rem 0; }
+#legalModal .modal-body a { color: #93c5fd; text-decoration: none; }
+#legalModal .modal-body a:hover { text-decoration: underline; }
+
+#legalModal .modal-close {
+  position: absolute; right: 10px; top: 10px; width: 34px; height: 34px;
+  border: 0; border-radius: 999px; background: #1f2937; color: #e5e7eb; cursor: pointer;
+  display: grid; place-items: center; font-size: 20px; line-height: 1;
+}
+#legalModal .modal-close:hover { background: #374151; }
+
+@media (max-width: 520px) {
+  #legalModal .modal-content { margin: 5vh auto; padding: 18px; }
+  #legalModal .modal-title { font-size: 1.1rem; }
+}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>SEAA — My Saved Checklists</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="assets/css/base.css">
+        <link rel="stylesheet" href="assets/css/layout.css">
+        <link rel="stylesheet" href="assets/css/hero.css">
+        <link rel="stylesheet" href="assets/css/tiles.css">
+        <link rel="stylesheet" href="assets/css/bucket.css">
+        <link rel="stylesheet" href="assets/css/auth.css">
+        <link rel="stylesheet" href="assets/css/legal.css">
+        <link rel="stylesheet" href="assets/css/keyboard.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/css/my-checklist.css"> 
+    </head>
+
+    <body>
+        <header class="site-header">
+            <div class="nav">
+                <a href="index.html" class="brand">
+                    <img src="seaa-logo.png" alt="SEAA Logo" class="brand-logo" />
+                </a>
+
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="destinations.html">Destinations</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="my-checklist.html" class="active">My Checklists</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <button id="openAuthBtn" class="btn-cta secondary" type="button">Sign In / Sign Up</button>
+                    <button id="openBucketBtn" class="btn-cta" type="button">Open Bucket List</button>
+                </div>
+            </div>
+        </header>
+
+        <button id="kbToggle" class="kb-toggle" type="button">Keyboard</button>
+
+        <div id="keyboard" class="kb" aria-hidden="true">
+            <div class="kb-row" data-row="1"></div>
+            <div class="kb-row" data-row="2"></div>
+            <div class="kb-row" data-row="3"></div>
+            <div class="kb-row" data-row="4"></div>
+        </div>
+
+        <main class="page">
+
+          <!-- ===== Page Header ===== -->
+          <!-- ===== Hero ===== -->
+          <section class="hero-landing" style="background: none; padding: 80px 20px 40px;">
+            <div class="hero-inner">
+              <h1>My Saved Checklists</h1>
+              <p class="hero-sub">
+                All your saved travel checklists in one place.
+              </p>
+              <div class="hero-actions">
+                <a href="#contact-form" class="btn-cta btn-lg">Open Bucket List</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== Saved Checklists Section ===== -->
+          <section class="tiles" id="mySavedChecklists">
+              <div class="tiles-inner" id="checklistContainer">
+                  <article class="tile" style="grid-column: 1 / -1; text-align: center;">
+                      <p>Loading your saved checklists...</p>
+                  </article>
+              </div>
+          </section>
+      </main>
+        <footer class="site-footer">
+            <div class="footer-inner">
+              <div class="footer-top">
+                <div class="footer-brand">
+                  <div class="footer-logo">SEAA</div>
+                </div>
+        
+                <div class="footer-columns">
+                  <div class="footer-col">
+                    <h4>For Travel Advisors</h4>
+                    <a href="https://www.foratravel.com/" target="_blank" rel="noopener noreferrer">Become an Advisor</a>
+                    <a href="https://www.travelpulse.com/" target="_blank" rel="noopener noreferrer">Advisor Resources</a>
+                    <a href="https://www.travelleaders.com/" target="_blank" rel="noopener noreferrer">Advisor FAQ</a>
+                    <a href="https://www.tourism-review.com/" target="_blank" rel="noopener noreferrer">Community Stories</a>
+                    <a href="https://www.travelmarketreport.com/" target="_blank" rel="noopener noreferrer">Advisor Portal</a>
+                  </div>
+                  <div class="footer-col">
+                    <h4>For Travelers</h4>
+                    <a href="#">Why book with SEAA</a>
+                    <a href="https://travel.state.gov/content/travel/en/international-travel.html" target="_blank" rel="noopener noreferrer">Travel Safety</a>
+                    <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener noreferrer">Guides & Trip Reports</a>
+                    <a href="https://www.nationalgeographic.com/travel/" target="_blank" rel="noopener noreferrer">Categories</a>
+                    <a href="https://www.travelandleisure.com/" target="_blank" rel="noopener noreferrer">Reviews</a>
+                  </div>
+                  <div class="footer-col">
+                    <h4>Our Company</h4>
+                    <a href="https://www.cntraveler.com/story/travel-news" target="_blank" rel="noopener noreferrer">Journal</a>
+                    <a href="https://www.forbes.com/travel/" target="_blank" rel="noopener noreferrer">Press</a>
+                    <a href="https://www.indeed.com/q-Travel-Company-jobs.html" target="_blank" rel="noopener noreferrer">Careers</a>
+                    <a href="index.html">Home</a>
+                    <a href="Destinations.html">Destinations</a>
+                  </div>
+        
+                  <div class="footer-news">
+                    <h4>Newsletter</h4>
+                    <p>Stay in the know with insider tips & travel news.</p>
+                    <form class="newsletter" onsubmit="return false;">
+                      <input type="email" placeholder="Enter email" aria-label="Email" />
+                      <button type="submit">Subscribe</button>
+                    </form>
+        
+                    <div class="social">
+                      <a aria-label="Instagram" href="https://www.instagram.com" target="_blank" class="ico" title="Instagram">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 .002 6.002A3 3 0 0 0 12 9Zm5.5-.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+                      </a>
+                      <a aria-label="Facebook" href="https://www.facebook.com" target="_blank" class="ico" title="Facebook">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7a2 2 0 0 1 2-2h2V1h-3a5 5 0 0 0-5 5v4H6v4h3v8h4Z"/></svg>
+                      </a>
+                      <a aria-label="X" href="https://twitter.com" target="_blank" class="ico" title="X">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h3.4l5.3 7.2L16.9 3H21l-7.5 9.7L21 21h-3.5l-6-8-5.9 8H3l7.7-10L3 3Z"/></svg>
+                      </a>
+                      <a aria-label="YouTube" href="https://www.youtube.com" class="ico" title="YouTube" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-2 6.5 6 3.5-6 3.5V8.5Z"/></svg>
+                      </a>
+                      <a aria-label="LinkedIn" href="https://www.linkedin.com" target="_blank" class="ico" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.1C13.8 8.9 15.7 8 18 8c4.3 0 5 2.8 5 6.4V24h-5v-7.2c0-1.7 0-3.8-2.3-3.8-2.3 0-2.7 1.8-2.7 3.7V24H8V8z"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <hr class="footer-sep" />
+        
+              <div class="footer-bottom">
+                <p>© 2025 SEAA. All rights reserved.</p>
+                <nav class="legal">
+                  <a href="#" class="legal-link" data-legal="privacy">Privacy Policy</a>
+                  <span>·</span>
+                  <a href="#" class="legal-link" data-legal="terms">Terms of Use</a>
+                  <span>·</span>
+                  <a href="#" class="legal-link" data-legal="sitemap">Site Map</a>
+                </nav>
+              </div>
+            </div>
+        </footer>
+
+
+        <div id="legalModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="legalTitle">
+            <div class="modal-content" role="document">
+            <button class="modal-close" type="button" aria-label="Close">×</button>
+            <h3 id="legalTitle" class="modal-title">Title</h3>
+            <div id="legalBody" class="modal-body">
+                </div>
+            </div>
+        </div>
+
+        <div id="authModal" class="modal" aria-hidden="true">
+            <div class="auth-glass" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <button class="auth-close" aria-label="Close">×</button>
+            <div class="auth-body">
+                <h2 id="authTitle">Welcome to SEAA</h2>
+                <p class="auth-sub">Create an account or sign in to save your bucket list.</p>
+                <div class="auth-tabs" role="tablist">
+                <button id="tabSignIn" class="auth-tab active" role="tab" aria-controls="panelSignIn" aria-selected="true">Sign In</button>
+                <button id="tabSignUp" class="auth-tab" role="tab" aria-controls="panelSignUp" aria-selected="false">Sign Up</button>
+                </div>
+                <form id="panelSignIn" class="auth-panel" role="tabpanel" aria-labelledby="tabSignIn">
+                <div class="auth-grid">
+                    <label class="auth-field"><span>Email</span><input type="email" required placeholder="you@example.com"></label>
+                    <label class="auth-field"><span>Password</span><input type="password" required minlength="6" placeholder="••••••••"></label>
+                    <label class="auth-check"><input type="checkbox"> Keep me signed in</label>
+                </div>
+                <div class="auth-actions">
+                    <button class="auth-primary" type="submit">Sign In</button>
+                    <button type="button" class="auth-secondary" id="toSignUp">Create an account</button>
+                </div>
+                </form>
+                <form id="panelSignUp" class="auth-panel" role="tabpanel" aria-labelledby="tabSignUp" style="display:none;">
+                <div class="auth-grid">
+                    <label class="auth-field"><span>First name</span><input type="text" required></label>
+                    <label class="auth-field"><span>Last name</span><input type="text" required></label>
+                    <label class="auth-field"><span>Email</span><input type="email" required></label>
+                    <label class="auth-field"><span>Phone (optional)</span><input type="tel" pattern="\+?\d[\d\s\-()]{7,}"></label>
+                    <label class="auth-field"><span>Password</span><input type="password" required minlength="6"></label>
+                    <label class="auth-field"><span>Confirm password</span><input type="password" required minlength="6"></label>
+                    <label class="auth-check" style="grid-column:1/-1;"><input type="checkbox" required> I agree to the Terms & Privacy Policy</label>
+                </div>
+                <div class="auth-actions">
+                    <button class="auth-primary" type="submit">Create account</button>
+                    <button type="button" class="auth-secondary" id="toSignIn">I already have an account</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div id="signoutConfirm" class="confirm-modal">
+            <div class="confirm-box">
+            <h3>Are you sure you want to sign out?</h3>
+            <div class="confirm-buttons">
+                <button id="signoutYes" class="btn-cta danger">Yes</button>
+                <button id="signoutNo" class="btn-cta secondary">No</button>
+            </div>
+            </div>
+        </div>
+
+        <div id="toast" class="toast hidden"></div>
+
+        <script src="assets/js/core.js"></script>
+
+        <script type="module" src="assets/js/my-checklist.js"></script>
+        <script src="assets/js/modals-legal.js"></script>
+        <script src="assets/js/keyboard.js"></script>
+
+        <script type="module" src="firebase-init.js"></script>
+
+        <script type="module" src="assets/js/modals-auth.js"></script>
+
+        <script type="module" src="assets/js/toast.js"></script>
+
+        <script src="assets/js/main.js"></script>
+        
+        <script>
+            // Since bucketModal is removed, redefine openBucketBtn to link to index.html
+            document.getElementById('openBucketBtn')?.addEventListener('click', () => {
+                window.location.href = 'index.html#bucketModal';
+            });
+        </script>
+    </body>
+</html>

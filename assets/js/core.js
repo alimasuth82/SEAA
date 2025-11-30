@@ -36,6 +36,56 @@
     mexico: "Mexico", egypt: "Egypt", usa: "United States",
   };
 
+  // Add a few common short-name mappings for keys/codes not covered above
+  Object.assign(NAME_MAP, {
+    kr: 'South Korea', kp: 'North Korea', ru: 'Russia', vn: 'Vietnam',
+    ir: 'Iran', la: 'Laos', md: 'Moldova', tr: 'Turkey', uk: 'United Kingdom'
+  });
+
+  // Short name overrides for official names from countries.json
+  const SHORT_NAME_OVERRIDES = {
+    "Korea, Republic of": "South Korea",
+    "Korea, Democratic People's Republic of": "North Korea",
+    "Russian Federation": "Russia",
+    "Viet Nam": "Vietnam",
+    "Iran, Islamic Republic of": "Iran",
+    "Lao People's Democratic Republic": "Laos",
+    "Moldova, Republic of": "Moldova",
+    "Côte d’Ivoire": "Ivory Coast",
+    "Türkiye": "Turkey",
+  };
+
+  function shortenCountryName(name, code) {
+    if (!name && !code) return '';
+    // Prefer explicit overrides by exact name
+    if (name && SHORT_NAME_OVERRIDES[name]) return SHORT_NAME_OVERRIDES[name];
+    // If code provided, try NAME_MAP by lowercase key or uppercase code
+    if (code) {
+      const low = String(code).toLowerCase();
+      if (NAME_MAP[low]) return NAME_MAP[low];
+      const up = String(code).toUpperCase();
+      // Some callers may pass ISO codes; try to match common cases
+      if (up === 'US') return 'United States';
+    }
+    if (!name) return '';
+
+    // Try simple canonicalizations
+    const cleaned = String(name)
+      .replace(/^Republic of /i, '')
+      .replace(/, Republic of$/i, '')
+      .replace(/,? Democratic People's Republic of$/i, '')
+      .replace(/,? of the$/i, '')
+      .replace(/^Russian Federation$/i, 'Russia')
+      .replace(/^Viet Nam$/i, 'Vietnam')
+      .replace(/^Iran,?/i, 'Iran')
+      .replace(/^Lao People's Democratic Republic$/i, 'Laos')
+      .replace(/^Moldova,?/i, 'Moldova')
+      .replace(/^Côte d’Ivoire$/i, 'Ivory Coast')
+      .trim();
+
+    return cleaned;
+  }
+
   const TIPS = {
     japan:{best:"Mar–May, Oct–Nov", food:"Ramen, sushi, okonomiyaki"},
     italy:{best:"Apr–Jun, Sep–Oct", food:"Pasta, gelato, espresso"},
@@ -139,6 +189,7 @@
     NAME_MAP, TIPS, CHECKLIST,
     TIPS_BY_CODE, TIPS_BY_NAME, pickTips,
     bestTimeFromLat, fetchCuisineSnippet,
+    shortenCountryName,
     toggleFlag, loadPhoto, setLoadingState,
   };
 })();

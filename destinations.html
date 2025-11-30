@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SEAA — Destinations</title>
+  <title>Destinations | SEAA — Smart Bucket List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
@@ -35,6 +35,29 @@
       <div class="nav-actions">
         <button id="openAuthBtn" class="btn-cta secondary" type="button">Sign In / Sign Up</button>
         <button id="openBucketBtn" class="btn-cta primary" type="button">Open Bucket List</button>
+        
+        <!-- User Profile Dropdown (hidden by default) -->
+        <div id="userProfileDropdown" class="user-profile-dropdown" style="display: none;">
+          <button id="userProfileBtn" class="user-profile-btn" type="button">
+            <span id="userNameDisplay">User</span>
+            <svg class="profile-arrow" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M7 10l5 5 5-5z"/>
+            </svg>
+          </button>
+          <div id="userProfileMenu" class="user-profile-menu" style="display: none;">
+            <button id="viewChecklistsFromMenu" class="dropdown-item" type="button">
+              <span>View All Checklists</span>
+            </button>
+            <hr class="dropdown-separator">
+            <button id="accountSettingsFromMenu" class="dropdown-item" type="button">
+              <span>Account Settings</span>
+            </button>
+            <hr class="dropdown-separator">
+            <button id="signOutFromMenu" class="dropdown-item danger" type="button">
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -148,7 +171,7 @@
             <p>Stay in the know with insider tips & travel news.</p>
             <form class="newsletter" onsubmit="return false;">
               <input type="email" placeholder="Enter email" aria-label="Email" />
-              <button type="submit">Subscribe</button>
+              <button type="submit" id="subscribeBtn">Subscribe</button>
             </form>
 
             <div class="social">
@@ -220,11 +243,6 @@
       <div class="auth-body">
         <h2 id="authTitle">Welcome to SEAA</h2>
         <p class="auth-sub">Create an account or sign in to save your bucket list.</p>
-
-        <div class="auth-tabs" role="tablist">
-          <button id="tabSignIn" class="auth-tab active" role="tab" aria-controls="panelSignIn" aria-selected="true">Sign In</button>
-          <button id="tabSignUp" class="auth-tab" role="tab" aria-controls="panelSignUp" aria-selected="false">Sign Up</button>
-        </div>
 
         <!-- Sign In -->
         <form id="panelSignIn" class="auth-panel" role="tabpanel" aria-labelledby="tabSignIn">
@@ -396,6 +414,20 @@
 <!-- 5) Final bootstrap (runs after DOMContentLoaded) -->
 <script src="assets/js/main.js"></script>
 
+<!-- 6) Newsletter subscription script -->
+<script type="module" src="assets/js/newsletter.js"></script>
+
+<!-- EmailJS initialization -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- EmailJS API Calling -->
+<script type="text/javascript">
+  (function(){
+      emailjs.init({
+        publicKey: "35c8Rgr1XKfE2KZWG",
+      });
+  })();
+</script>
 
 
 

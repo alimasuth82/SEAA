@@ -33,6 +33,29 @@
     <div class="nav-actions">
       <button id="openAuthBtn" class="btn-cta secondary" type="button">Sign In / Sign Up</button>
       <button id="openBucketBtn" class="btn-cta" type="button">Open Bucket List</button>
+      
+      <!-- User Profile Dropdown (hidden by default) -->
+      <div id="userProfileDropdown" class="user-profile-dropdown" style="display: none;">
+        <button id="userProfileBtn" class="user-profile-btn" type="button">
+          <span id="userNameDisplay">User</span>
+          <svg class="profile-arrow" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M7 10l5 5 5-5z"/>
+          </svg>
+        </button>
+        <div id="userProfileMenu" class="user-profile-menu" style="display: none;">
+          <button id="viewChecklistsFromMenu" class="dropdown-item" type="button">
+            <span>View All Checklists</span>
+          </button>
+          <hr class="dropdown-separator">
+          <button id="accountSettingsFromMenu" class="dropdown-item" type="button">
+            <span>Account Settings</span>
+          </button>
+          <hr class="dropdown-separator">
+          <button id="signOutFromMenu" class="dropdown-item danger" type="button">
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -58,10 +81,10 @@
       <div class="hero-inner">
         <h1>Contact SEAA</h1>
         <p class="hero-sub">
-          Questions, partnerships, or feedback? We’d love to hear from you.
+          Questions, partnerships, or feedback? We'd love to hear from you.
         </p>
         <div class="hero-actions">
-          <a href="#contact-form" class="btn-cta btn-lg">Send a Message</a>
+          <a href="#contact-form" class="btn-cta btn-lg" style="text-decoration: none;">Send a Message</a>
         </div>
       </div>
     </section>
@@ -133,7 +156,7 @@
 
         <div class="card">
           <div class="wrap">
-            <form onsubmit="event.preventDefault(); alert('Thanks! We received your message and will reply soon.'); this.reset();">
+            <form id="contactForm">
               <div class="info-grid">
                 <div class="info-item">
                   <b>First Name</b>
@@ -174,9 +197,7 @@
               </div>
 
               <div class="hero-actions" style="justify-content:flex-start; margin-top:14px;">
-                <button class="btn-cta" type="button" onclick="window.location='mailto:shahabmt.98@gmail.com'">
-  Email Us
-</button>
+                <button class="btn-cta" type="submit">Send Message</button>
 
               </div>
             </form>
@@ -278,7 +299,7 @@
             <p>Stay in the know with insider tips & travel news.</p>
             <form class="newsletter" onsubmit="return false;">
               <input type="email" placeholder="Enter email" aria-label="Email" />
-              <button type="submit">Subscribe</button>
+              <button type="submit" id="subscribeBtn">Subscribe</button>
             </form>
 
             <div class="social">
@@ -349,11 +370,6 @@
       <div class="auth-body">
         <h2 id="authTitle">Welcome to SEAA</h2>
         <p class="auth-sub">Create an account or sign in to save your bucket list.</p>
-
-        <div class="auth-tabs" role="tablist">
-          <button id="tabSignIn" class="auth-tab active" role="tab" aria-controls="panelSignIn" aria-selected="true">Sign In</button>
-          <button id="tabSignUp" class="auth-tab" role="tab" aria-controls="panelSignUp" aria-selected="false">Sign Up</button>
-        </div>
 
         <!-- Sign In -->
         <form id="panelSignIn" class="auth-panel" role="tabpanel" aria-labelledby="tabSignIn">
@@ -520,8 +536,25 @@
   <!-- 5) Final bootstrap (runs after DOMContentLoaded) -->
   <script src="assets/js/main.js"></script>
 
+  <script type="module" src="assets/js/newsletter.js"></script>
 
+<!-- 6) Newsletter subscription script -->
+<script type="module" src="assets/js/newsletter.js"></script>
 
+<!-- EmailJS initialization -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- EmailJS API Calling -->
+<script type="text/javascript">
+  (function(){
+      emailjs.init({
+        publicKey: "35c8Rgr1XKfE2KZWG",
+      });
+  })();
+</script>
+
+<!-- Contact form handling -->
+<script type="module" src="assets/js/contact.js"></script>
 
 
 

@@ -1,93 +1,180 @@
-/* ========================================================
-   SEAA — My Saved Checklists
-   Extends default tile UI in tiles.css
-======================================================== */
+/* ===== My Checklist Page Styles ===== */
 
-/* Checklist tiles (inherits .tile) */
-.tile-checklist {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+/* Use the existing Tile Grid from tiles.css, but ensure spacing is correct */
+.checklists-section {
+  padding-bottom: 80px;
 }
 
-/* Date under title */
-.saved-date {
-    margin-top: -6px;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-    color: #64748b;
+/* ===== The Tile (Card) ===== */
+/* We are using the structure <article class="tile checklist-tile"> */
+.tile.checklist-tile {
+  /* Inherits dark glass style from tiles.css, we just add flex layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 280px; /* Ensure uniform height */
+  position: relative;
+  /* Entrance Animation */
+  animation: fadeUp 0.4s ease-out forwards;
+  opacity: 0;
+  transform: translateY(10px);
 }
 
-/* Progress bar */
-.progress {
-    width: 100%;
-    height: 8px;
-    background: #e2e8f0;
-    border-radius: 6px;
-    overflow: hidden;
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.bar {
-    height: 100%;
-    background: #0ea5e9; /* SEAA blue */
-    transition: width 0.3s ease;
+/* Header: Flag + Title */
+.tile-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-/* Task preview list */
-.task-preview {
-    list-style: none;
-    padding: 0;
-    margin: 5px 0 10px;
-    max-height: 130px;
-    overflow-y: auto;
+.tile-flag {
+  width: 48px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-.task-preview-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 0;
-    font-size: 0.92rem;
+.tile-title h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text, #fff);
 }
 
-.task-preview-more {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: #475569;
+.tile-date {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8; /* Muted text */
+  margin-top: 2px;
 }
 
-/* Actions row */
-.checklist-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: auto;
+/* Progress Bar (Neon Style) */
+.tile-progress {
+  margin-top: 4px;
 }
 
-/* Delete button (thin outline style like reset buttons) */
-.delete-btn {
-    border: 1px solid #e11d48;
-    background: transparent;
-    color: #e11d48;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 
-.delete-btn:hover {
-    background: #fee2e2;
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 99px;
+  overflow: hidden;
 }
 
-/* Simple hero version for internal pages */
-.hero-simple {
-    background: none;
-    padding: 80px 20px 40px;
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #22d3ee); /* Cyan gradient */
+  border-radius: 99px;
+  transition: width 0.5s ease-out;
+  box-shadow: 0 0 10px rgba(14, 165, 166, 0.4); /* Glow effect */
+}
+
+/* Task Preview List */
+.tile-tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1; /* Pushes actions down */
+}
+
+.tile-task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.tile-task-item:last-child {
+  border-bottom: none;
+}
+
+.tile-task-item.completed {
+  /* Show completed state as checked (✓) with muted color only — no strike-through */
+  text-decoration: none;
+  color: #94a3b8;
+}
+
+.task-more {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Actions Footer */
+.tile-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Use existing .btn-cta for the primary button */
+.tile-actions .btn-cta {
     text-align: center;
+    text-decoration: none;
+    font-size: 0.9rem;
 }
 
-.hero-simple .hero-inner h1 {
-    color: #0b1720;
+/* Delete Button (Icon style to match dark theme) */
+.btn-delete {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #ef4444; /* Red */
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.hero-simple .hero-sub {
-    color: #334155;
+.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  transform: scale(1.05);
 }
+
+/* States */
+.loading-state-container, .empty-state, .signin-prompt {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255,255,255,0.03); /* Glassy background */
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    color: var(--text);
+}
+
+.spinner {
+    width: 40px; height: 40px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state h2, .signin-prompt h2 { color: var(--text); }
+.empty-state p, .signin-prompt p { color: #94a3b8; margin-bottom: 20px; }

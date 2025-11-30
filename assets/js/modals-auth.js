@@ -3,19 +3,28 @@ import {
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged 
+  onAuthStateChanged,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 import { showToast } from "./toast.js";
 
 const authModal = document.getElementById("authModal");
 const openBtn   = document.getElementById("openAuthBtn");
-const tabIn  = document.getElementById("tabSignIn");
-const tabUp  = document.getElementById("tabSignUp");
 const pIn    = document.getElementById("panelSignIn");
 const pUp    = document.getElementById("panelSignUp");
 const toSignInBtn = document.getElementById("toSignIn");
 const toSignUpBtn = document.getElementById("toSignUp");
+
+// User profile dropdown elements
+const userProfileDropdown = document.getElementById("userProfileDropdown");
+const userProfileBtn = document.getElementById("userProfileBtn");
+const userNameDisplay = document.getElementById("userNameDisplay");
+const userProfileMenu = document.getElementById("userProfileMenu");
+const viewChecklistsFromMenu = document.getElementById("viewChecklistsFromMenu");
+const accountSettingsFromMenu = document.getElementById("accountSettingsFromMenu");
+const signOutFromMenu = document.getElementById("signOutFromMenu");
+const openBucketBtn = document.getElementById("openBucketBtn");
 
 // =====================
 // Modal Open/Close
@@ -38,25 +47,19 @@ document.addEventListener("keydown", (e) => {
 });
 
 // =====================
-// Tabs
+// Panel switching (via secondary buttons only)
 // =====================
 function showIn() {
-  tabIn.classList.add("active");
-  tabUp.classList.remove("active");
-  pIn.style.display = "block";
-  pUp.style.display = "none";
+  if (pIn) pIn.style.display = "block";
+  if (pUp) pUp.style.display = "none";
 }
 function showUp() {
-  tabUp.classList.add("active");
-  tabIn.classList.remove("active");
-  pUp.style.display = "block";
-  pIn.style.display = "none";
+  if (pUp) pUp.style.display = "block";
+  if (pIn) pIn.style.display = "none";
 }
-tabIn.onclick = showIn;
-tabUp.onclick = showUp;
 
-toSignInBtn.onclick = showIn;
-toSignUpBtn.onclick = showUp;
+if (toSignInBtn) toSignInBtn.onclick = showIn;
+if (toSignUpBtn) toSignUpBtn.onclick = showUp;
 
 // =====================
 // Firebase: SIGN IN
@@ -82,6 +85,10 @@ pIn.addEventListener("submit", async (e) => {
 pUp.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const firstName = pUp.querySelector("input[type=text]").value.trim();
+  const lastNameInput = pUp.querySelectorAll("input[type=text]")[1];
+  const lastName = lastNameInput ? lastNameInput.value.trim() : "";
+  
   const inputs = pUp.querySelectorAll("input[type=password], input[type=email]");
   const email = inputs[0].value.trim();
   const pass  = inputs[1].value.trim();
@@ -93,7 +100,14 @@ pUp.addEventListener("submit", async (e) => {
   }
 
   try {
-    await createUserWithEmailAndPassword(auth, email, pass);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+    
+    // Store first and last name in user profile
+    const displayName = `${firstName} ${lastName}`.trim();
+    await updateProfile(userCredential.user, {
+      displayName: displayName
+    });
+    
     showToast("Account created! You can now sign in.", "success");
     showIn();
   } catch (err) {
@@ -102,21 +116,63 @@ pUp.addEventListener("submit", async (e) => {
 });
 
 // =====================
-// Firebase: sign out
+// Dropdown Menu Toggle
 // =====================
-const logoutBtn = document.createElement("button");
-  logoutBtn.textContent = "Sign Out";
-  logoutBtn.className = "btn-cta secondary";
-  logoutBtn.style.marginLeft = "12px";
+function toggleProfileMenu() {
+  const isOpen = userProfileMenu.style.display === "block";
+  if (isOpen) {
+    userProfileMenu.style.display = "none";
+    userProfileBtn.classList.remove("open");
+  } else {
+    userProfileMenu.style.display = "block";
+    userProfileBtn.classList.add("open");
+  }
+}
 
-  logoutBtn.onclick = () => {
+function closeProfileMenu() {
+  userProfileMenu.style.display = "none";
+  userProfileBtn.classList.remove("open");
+}
+
+userProfileBtn.addEventListener("click", toggleProfileMenu);
+
+// Close menu when clicking outside
+document.addEventListener("click", (e) => {
+  if (!userProfileDropdown.contains(e.target) && userProfileDropdown.style.display !== "none") {
+    closeProfileMenu();
+  }
+});
+
+// (Removed) Open Bucket List menu item handler — option removed from menu
+
+// =====================
+// Menu Items: View All Checklists
+// =====================
+viewChecklistsFromMenu.addEventListener("click", () => {
+  closeProfileMenu();
+  window.location.href = "my-checklist.html";
+});
+
+// =====================
+// Menu Items: Account Settings
+// =====================
+if (accountSettingsFromMenu) {
+  accountSettingsFromMenu.addEventListener("click", () => {
+    closeProfileMenu();
+    window.location.href = "account-settings.html";
+  });
+}
+
+// =====================
+// Menu Items: Sign Out
+// =====================
+signOutFromMenu.addEventListener("click", () => {
+  closeProfileMenu();
   const signoutModal = document.getElementById("signoutConfirm");
   const yesBtn = document.getElementById("signoutYes");
   const noBtn  = document.getElementById("signoutNo");
 
-  logoutBtn.onclick = () => {
-    signoutModal.style.display = "flex";
-  };
+  signoutModal.style.display = "flex";
 
   yesBtn.onclick = () => {
     signOut(auth);
@@ -126,7 +182,7 @@ const logoutBtn = document.createElement("button");
   noBtn.onclick = () => {
     signoutModal.style.display = "none";
   };
-};
+});
 
 // =====================
 // Auto UI Update on Login
@@ -135,16 +191,25 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // User logged in
     openBtn.style.display = "none";  // hide Sign In button
-
-    // Add logout button to nav if not added
-    if (!document.getElementById("logoutButtonInjected")) {
-      logoutBtn.id = "logoutButtonInjected";
-      document.querySelector(".nav-actions").appendChild(logoutBtn);
+    userProfileDropdown.style.display = "inline-block";  // show profile dropdown
+    
+    // Display user's name from displayName or email
+    const displayName = user.displayName || user.email.split("@")[0];
+    // Show a friendly greeting in the button. Use full name if available;
+    // fall back to first name when the greeting would be very long.
+    let greeting = `Hi ${displayName}`;
+    if (greeting.length > 48) {
+      // shorten to first name to avoid overflow
+      const first = (displayName || "").split(" ")[0] || displayName;
+      greeting = `Hi ${first}`;
     }
+    userNameDisplay.textContent = greeting;
+    // Also set full name as tooltip for clarity
+    userNameDisplay.setAttribute('title', displayName);
   } else {
     // Logged out
     openBtn.style.display = "inline-block";
-    const injected = document.getElementById("logoutButtonInjected");
-    if (injected) injected.remove();
+    userProfileDropdown.style.display = "none";  // hide profile dropdown
+    closeProfileMenu();
   }
 });

@@ -13,8 +13,6 @@
   <link rel="stylesheet" href="assets/css/legal.css">
   <link rel="stylesheet" href="assets/css/keyboard.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
-
-
 </head>
 <body>
 
@@ -33,6 +31,28 @@
     <div class="nav-actions">
       <button id="openAuthBtn" class="btn-cta secondary" type="button">Sign In / Sign Up</button>
       <button id="openBucketBtn" class="btn-cta" type="button">Open Bucket List</button>
+      
+      <div id="userProfileDropdown" class="user-profile-dropdown" style="display: none;">
+        <button id="userProfileBtn" class="user-profile-btn" type="button">
+          <span id="userNameDisplay">User</span>
+          <svg class="profile-arrow" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M7 10l5 5 5-5z"/>
+          </svg>
+        </button>
+        <div id="userProfileMenu" class="user-profile-menu" style="display: none;">
+          <button id="viewChecklistsFromMenu" class="dropdown-item" type="button">
+            <span>View All Checklists</span>
+          </button>
+          <hr class="dropdown-separator">
+          <button id="accountSettingsFromMenu" class="dropdown-item" type="button">
+            <span>Account Settings</span>
+          </button>
+          <hr class="dropdown-separator">
+          <button id="signOutFromMenu" class="dropdown-item danger" type="button">
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -40,10 +60,8 @@
 
 
 
-<!-- Toggle button -->
 <button id="kbToggle" class="kb-toggle" type="button">Keyboard</button>
 
-<!-- On-screen keyboard -->
 <div id="keyboard" class="kb" aria-hidden="true">
   <div class="kb-row" data-row="1"></div>
   <div class="kb-row" data-row="2"></div>
@@ -56,11 +74,8 @@
 
 
 
-  <!-- ===== Main page content ===== -->
   <main class="page">
-    <!-- ===== Hero (with background slideshow) ===== -->
     <section class="hero-landing" id="about">
-      <!-- two layers for cross-fade -->
       <div class="hero-bg hero-bg-a"></div>
       <div class="hero-bg hero-bg-b"></div>
 
@@ -69,17 +84,15 @@
         <p class="hero-sub">
           Plan smarter with insider tips, seamless checklists, and beautiful ideas—at no extra cost.
         </p>
-        <!--
         <div class="hero-actions">
           <button id="openBucketBtn2" class="btn-cta btn-lg" type="button">Open the Bucket List</button>
-        </div> -->
+        </div>
         
       </div>
     </section>
 
 
 
-    <!-- ===== Services (3 new cards with CTA style) ===== -->
     <section class="tiles" id="destinations">
       <div class="tiles-inner">
         <article class="tile">
@@ -113,10 +126,8 @@
 
 
 
-<!-- ===== Continents row (5 cards) ===== -->
 <section class="tiles tiles-continents" id="continents">
   <div class="tiles-inner tiles-5-fixed">
-    <!-- Asia -->
     <article class="tile">
       <img class="tile-img" src="images/continents/asia.jpg" alt="Asia" />
       <h3>Asia</h3>
@@ -127,7 +138,6 @@
       </button>
     </article>
 
-    <!-- Europe -->
     <article class="tile">
       <img class="tile-img" src="images/continents/europe.jpg" alt="Europe" />
       <h3>Europe</h3>
@@ -138,7 +148,6 @@
       </button>
     </article>
 
-    <!-- Africa -->
     <article class="tile">
       <img class="tile-img" src="images/continents/africa.jpg" alt="Africa" />
       <h3>Africa</h3>
@@ -149,7 +158,6 @@
       </button>
     </article>
 
-    <!-- America -->
     <article class="tile">
       <img class="tile-img" src="images/continents/america.jpg" alt="America" />
       <h3>America</h3>
@@ -160,7 +168,6 @@
       </button>
     </article>
 
-    <!-- Oceania -->
     <article class="tile">
       <img class="tile-img" src="images/continents/oceania.jpg" alt="Oceania" />
       <h3>Oceania</h3>
@@ -178,7 +185,6 @@
 
 
 
-    <!-- ===== Reviews ===== -->
     <section class="reviews" id="contact">
       <div class="reviews-inner">
         <h2>Loved by travelers</h2>
@@ -187,7 +193,6 @@
     </section>
   </main>
 
-  <!-- ===== Footer ===== -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-top">
@@ -227,7 +232,7 @@
             <p>Stay in the know with insider tips & travel news.</p>
             <form class="newsletter" onsubmit="return false;">
               <input type="email" placeholder="Enter email" aria-label="Email" />
-              <button type="submit">Subscribe</button>
+              <button type="submit" id="subscribeBtn">Subscribe</button>
             </form>
 
             <div class="social">
@@ -273,14 +278,12 @@
 
 
 
-  <!-- ===== Legal Modal (reusable) ===== -->
-<div id="legalModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="legalTitle">
+  <div id="legalModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="legalTitle">
   <div class="modal-content" role="document">
     <button class="modal-close" type="button" aria-label="Close">×</button>
     <h3 id="legalTitle" class="modal-title">Title</h3>
     <div id="legalBody" class="modal-body">
-      <!-- content injected by JS -->
-    </div>
+      </div>
   </div>
 </div>
 
@@ -292,7 +295,6 @@
 
 
 
-<!-- ===== Auth Modal ===== -->
 <div id="authModal" class="modal" aria-hidden="true">
   <div class="auth-glass" role="dialog" aria-modal="true" aria-labelledby="authTitle">
     <button class="auth-close" aria-label="Close">×</button>
@@ -302,12 +304,6 @@
       <h2 id="authTitle">Welcome to SEAA</h2>
       <p class="auth-sub">Create an account or sign in to save your bucket list.</p>
 
-      <div class="auth-tabs" role="tablist">
-        <button id="tabSignIn" class="auth-tab active" role="tab" aria-controls="panelSignIn" aria-selected="true">Sign In</button>
-        <button id="tabSignUp" class="auth-tab" role="tab" aria-controls="panelSignUp" aria-selected="false">Sign Up</button>
-      </div>
-
-      <!-- Sign In -->
       <form id="panelSignIn" class="auth-panel" role="tabpanel" aria-labelledby="tabSignIn">
         <div class="auth-grid">
           <label class="auth-field"><span>Email</span><input type="email" required placeholder="you@example.com"></label>
@@ -320,7 +316,6 @@
         </div>
       </form>
 
-      <!-- Sign Up -->
       <form id="panelSignUp" class="auth-panel" role="tabpanel" aria-labelledby="tabSignUp" style="display:none;">
         <div class="auth-grid">
           <label class="auth-field"><span>First name</span><input type="text" required></label>
@@ -347,7 +342,6 @@
 
 
 
-  <!-- ===== Modal: Bucket List App ===== -->
   <div id="bucketModal" class="modal" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" id="closeBucketBtn" aria-label="Close bucket list">×</button>
@@ -422,7 +416,6 @@
               </div>
               <div class="progress"><div class="bar" id="progressBar" style="width:0%"></div></div>
               <div class="progress-text" id="progressText">0% ready</div>
-              <!-- ✅ Add manual save/load buttons here -->
               <div class="d-flex gap-2 justify-content-end mt-3">
               <button id="loadChecklistBtn" class="btn btn-outline-secondary" type="button">Load Saved</button>
               <button id="saveChecklistBtn" class="btn btn-primary" type="button">Save Checklist</button>
@@ -432,14 +425,7 @@
                 <button id="resetBtn" class="btn-reset" type="button">Reset Checklist</button>
               </div>
             </div>
-          </div><!-- /#info -->
-        </div><!-- /.wrap -->
-      </div><!-- /.card -->
-    </div><!-- /.modal-card -->
-  </div><!-- /.modal -->
-
-  <!-- Sign-Out Confirmation Modal -->
-  <div id="signoutConfirm" class="confirm-modal">
+          </div></div></div></div></div><div id="signoutConfirm" class="confirm-modal">
     <div class="confirm-box">
       <h3>Are you sure you want to sign out?</h3>
       <div class="confirm-buttons">
@@ -450,39 +436,32 @@
   </div>
 
 
-  <!-- A pop-up for displaying messages -->
   <div id="toast" class="toast hidden"></div>
 
-<!-- 1) Core namespace (MUST be first) -->
 <script src="assets/js/core.js"></script>
 
-<!-- 2) Feature modules -->
 <script src="assets/js/countries.js"></script>
 <script src="assets/js/infoPanel.js"></script>
 <script type="module" src="assets/js/checklist.js"></script>
-<!-- REMOVE the old non-module modals-auth.js -->
 <script src="assets/js/modals-legal.js"></script>
 <script src="assets/js/slideshow.js"></script>
 <script src="assets/js/keyboard.js"></script>
 
-<!-- 3) Loading Google Firebase Project -->
 <script type="module" src="firebase-init.js"></script>
-
-<!-- Load the modals-auth as a module -->
 <script type="module" src="assets/js/modals-auth.js"></script>
-
-<!-- 4) For displaying custom notification windows -->
 <script type="module" src="assets/js/toast.js"></script>
-
-<!-- 5) Final bootstrap (runs after DOMContentLoaded) -->
 <script src="assets/js/main.js"></script>
+<script type="module" src="assets/js/newsletter.js"></script>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+      emailjs.init({
+        publicKey: "35c8Rgr1XKfE2KZWG",
+      });
+  })();
+</script>
 
-
-
-
-
-  <!-- Modal open/close -->
   <script>
     const modal = document.getElementById('bucketModal');
     const openBtns = [
@@ -507,24 +486,40 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
     });
+    // Auto-open modal if URL requests it (from external pages like my-checklist)
+    (function autoOpenFromURL(){
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const country = params.get('country');
+        const hash = window.location.hash || '';
+        if (country) {
+          // set select value if exists
+          const sel = document.getElementById('country');
+          if (sel) {
+            // try match by value
+            sel.value = country;
+            // open modal and load info
+            openModal();
+            // trigger show info (if available)
+            const showBtn = document.getElementById('showInfoBtn');
+            if (showBtn) showBtn.click();
+            // also attempt to load saved checklist for this country (if module available)
+            try {
+              if (window.App && window.App.checklist && typeof window.App.checklist.loadSavedChecklist === 'function') {
+                window.App.checklist.loadSavedChecklist(country);
+              } else {
+                const loadBtn = document.getElementById('loadChecklistBtn');
+                if (loadBtn) loadBtn.click();
+              }
+            } catch (e) { console.warn('auto-load checklist failed', e); }
+          }
+        } else if (hash === '#bucketModal') {
+          openModal();
+        }
+      } catch (e) {
+        console.warn('autoOpenFromURL error', e);
+      }
+    })();
   </script>
-  
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 // ===== checklist.js — checklist UI (create, add, reset, progress, save/load) =====
 import { auth, db } from "./firebase-init.js";
-import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { showToast } from "./toast.js";
 
 
@@ -74,7 +74,10 @@ import { showToast } from "./toast.js";
       const sel = App.els.country;
       const key = sel?.value;
       const opt = sel?.options[sel.selectedIndex];
-      const cName = (opt?.dataset?.name) || (App.NAME_MAP[key]) || key || "";
+      const rawLabel = (opt?.dataset?.name) || (opt?.textContent) || key || "";
+      const cName = (App && typeof App.shortenCountryName === 'function')
+        ? App.shortenCountryName(rawLabel, key)
+        : rawLabel;
       if (cName) items.unshift(`Download an offline map of ${cName}`);
       renderChecklist(items);
     });
@@ -105,74 +108,110 @@ import { showToast } from "./toast.js";
       try {
         await setDoc(
           doc(db, "users", user.uid, "checklists", country),
-          { tasks },
+          { 
+            tasks,
+            lastUpdated: serverTimestamp()
+          },
           { merge: true }
         );
-        showToast(`Checklist saved for ${country}!`, "success");
+
+        // Compute a friendly display name for the country
+        const sel = App.byId("country");
+        const opt = sel?.options[sel.selectedIndex];
+        const rawLabel = opt?.dataset?.name || opt?.textContent || country;
+        const displayName = (App && typeof App.shortenCountryName === 'function')
+          ? App.shortenCountryName(rawLabel, country)
+          : rawLabel;
+
+        showToast(`Checklist saved for ${displayName}!`, "success");
       } catch (err) {
         showToast("Save failed: " + err.message, "error");
       }
     });
 
         // ===== Firestore Load =====
-    if (loadBtn) loadBtn.addEventListener("click", async () => {
-      const user = auth.currentUser;
-      if (!user) {
-        showToast("You must be signed in to load.", "error");
-        return;
-      }
+          async function loadSavedChecklist(countryKey) {
+            const user = auth.currentUser;
+            if (!user) {
+              showToast("You must be signed in to load.", "error");
+              return;
+            }
 
-      const country = App.byId("country")?.value || "";
-      if (!country) {
-        showToast("Choose a country before loading.", "error");
-        return;
-      }
+            const country = countryKey || App.byId("country")?.value || "";
+            if (!country) {
+              showToast("Choose a country before loading.", "error");
+              return;
+            }
 
-      try {
-        const snap = await getDoc(
-          doc(db, "users", user.uid, "checklists", country)
-        );
+            try {
+              const snap = await getDoc(
+                doc(db, "users", user.uid, "checklists", country)
+              );
 
-        if (!snap.exists()) {
-          showToast("No saved checklist for this country.", "error");
-          return;
-        }
+              if (!snap.exists()) {
+                showToast("No saved checklist for this country.", "error");
+                return;
+              }
 
-        const data = snap.data();
-        const tasks = data.tasks || [];
+              const data = snap.data();
+              const tasks = data.tasks || [];
 
-        const list = App.byId("tasksList");
-        if (!list) return;
+              const list = App.byId("tasksList");
+              if (!list) return;
 
-        list.innerHTML = "";
-        tasks.forEach(t => {
-          const li = document.createElement("li");
+              list.innerHTML = "";
+              tasks.forEach(t => {
+                const li = document.createElement("li");
 
-          const cb = document.createElement("input");
-          cb.type = "checkbox";
-          cb.checked = !!t.done;
-          cb.addEventListener("change", updateProgress);
+                const cb = document.createElement("input");
+                cb.type = "checkbox";
+                cb.checked = !!t.done;
+                cb.addEventListener("change", updateProgress);
 
-          const span = document.createElement("span");
-          span.textContent = t.text;
+                const span = document.createElement("span");
+                span.textContent = t.text;
 
-          const del = document.createElement("button");
-          del.className = "task-del";
-          del.type = "button";
-          del.textContent = "×";
-          del.addEventListener("click", () => { li.remove(); updateProgress(); });
+                const del = document.createElement("button");
+                del.className = "task-del";
+                del.type = "button";
+                del.textContent = "×";
+                del.addEventListener("click", () => { li.remove(); updateProgress(); });
 
-          li.append(cb, span, del);
-          list.appendChild(li);
-        });
+                li.append(cb, span, del);
+                list.appendChild(li);
+              });
 
-        updateProgress();
-        showToast(`Loaded saved checklist for ${country}!`, "success");
+              updateProgress();
+              // Get the friendly display name from the select option or normalize the code
+              const sel = App.byId("country");
+              let displayName = country;
+              
+              if (sel && sel.value === country) {
+                // If the select currently has this country selected, use its text
+                const opt = sel.options[sel.selectedIndex];
+                displayName = opt?.dataset?.name || opt?.textContent || country;
+              } else {
+                // Otherwise find the option by value
+                const opt = sel?.querySelector(`option[value="${country}"]`);
+                displayName = opt?.dataset?.name || opt?.textContent || country;
+              }
+              
+              // Apply short name normalization
+              if (App && typeof App.shortenCountryName === 'function') {
+                displayName = App.shortenCountryName(displayName, country);
+              }
+              
+              showToast(`Loaded saved checklist for ${displayName}!`, "success");
+            } catch (err) {
+              showToast("Load failed: " + err.message, "error");
+            }
+          }
 
-      } catch (err) {
-        showToast("Load failed: " + err.message, "error");
-      }
-    });
+          if (loadBtn) loadBtn.addEventListener("click", () => loadSavedChecklist());
+
+          // Expose for other scripts to call (e.g. index auto-open)
+          if (!App.checklist) App.checklist = {};
+          App.checklist.loadSavedChecklist = loadSavedChecklist;
   }
 
   function init(){
